@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alaka S — Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --butter: #FFF4D6;
+    --ink: #241C3F;
+    --coral: #FF5C7A;
+    --mint: #6BCB77;
+    --periwinkle: #4D5BCE;
+    --paper: #FFFDF7;
+    --max-width: 920px;
+  }
+
+  *{ box-sizing: border-box; }
+
+  html{ scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--butter);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    background-image:
+      radial-gradient(circle at 2px 2px, rgba(36,28,63,0.08) 1px, transparent 0);
+    background-size: 22px 22px;
+  }
+
+  a{ color: inherit; }
+
+  .wrap{
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 28px;
+  }
+
+  h1, h2, h3{
+    font-family: 'Baloo 2', sans-serif;
+    margin: 0;
+    line-height: 1.1;
+  }
+
+  .tag{
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+  }
+
+  /* ---------- NAV ---------- */
+  nav{
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: rgba(255,244,214,0.88);
+    backdrop-filter: blur(6px);
+    border-bottom: 3px solid var(--ink);
+  }
+  nav .wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding-top: 14px;
+    padding-bottom: 14px;
+  }
+  .nav-logo{
+    font-family:'Baloo 2', sans-serif;
+    font-weight:700;
+    font-size: 20px;
+    text-decoration:none;
+    display:flex;
+    align-items:center;
+    gap:6px;
+  }
+  .nav-logo span.dot{
+    display:inline-block;
+    width:10px; height:10px;
+    background: var(--coral);
+    border-radius:50%;
+    border:2px solid var(--ink);
+  }
+  .nav-links{
+    display:flex;
+    gap: 22px;
+    list-style:none;
+    margin:0; padding:0;
+  }
+  .nav-links a{
+    text-decoration:none;
+    font-weight:600;
+    font-size:15px;
+    position:relative;
+  }
+  .nav-links a:hover{ color: var(--periwinkle); }
+  .nav-links a:focus-visible, a:focus-visible{
+    outline: 3px solid var(--periwinkle);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding: 84px 0 70px;
+    position: relative;
+    overflow: visible;
+  }
+  .hero .wrap{
+    display:grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 40px;
+    align-items:center;
+  }
+  .blob{
+    width: 260px;
+    height: 260px;
+    justify-self: center;
+    position:relative;
+  }
+  .blob svg{ width:100%; height:100%; }
+  .blob .face-mark{
+    position:absolute;
+    top:50%; left:50%;
+    transform: translate(-50%,-50%);
+    font-family:'JetBrains Mono',monospace;
+    font-size: 15px;
+    text-align:center;
+    color: var(--paper);
+  }
+  .eyebrow-tag{
+    display:inline-block;
+    background: var(--mint);
+    border: 2.5px solid var(--ink);
+    padding: 4px 12px;
+    border-radius: 20px;
+    transform: rotate(-2deg);
+    margin-bottom: 18px;
+  }
+  .hero h1{
+    font-size: clamp(38px, 5.5vw, 60px);
+    font-weight: 800;
+    margin-bottom: 18px;
+  }
+  .hero h1 em{
+    font-style: normal;
+    background: var(--coral);
+    padding: 0 8px;
+    border-radius: 6px;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+  .hero p.lede{
+    max-width: 46ch;
+    font-size: 18px;
+    margin-bottom: 28px;
+  }
+  .hero-ctas{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    font-family:'Inter',sans-serif;
+    font-weight:600;
+    font-size:15px;
+    padding: 13px 24px;
+    border-radius: 12px;
+    border: 2.5px solid var(--ink);
+    text-decoration:none;
+    display:inline-block;
+    cursor:pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    box-shadow: 4px 4px 0 var(--ink);
+  }
+  .btn:hover{
+    transform: translate(-2px,-2px);
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+  .btn:active{
+    transform: translate(1px,1px);
+    box-shadow: 2px 2px 0 var(--ink);
+  }
+  .btn-primary{ background: var(--periwinkle); color: var(--paper); }
+  .btn-ghost{ background: var(--paper); }
+
+  /* ---------- SECTION HEADERS ---------- */
+  section{ padding: 60px 0; }
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    gap:14px;
+    margin-bottom: 36px;
+  }
+  .section-head h2{
+    font-size: 32px;
+    font-weight:700;
+  }
+  .section-head .tag{
+    color: rgba(36,28,63,0.55);
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about{
+    background: var(--paper);
+    border-top: 3px solid var(--ink);
+    border-bottom: 3px solid var(--ink);
+  }
+  .about-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 44px;
+  }
+  .about p{ margin: 0 0 14px; }
+  .stack-list{
+    list-style:none;
+    margin:0; padding:0;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+  .stack-list li{
+    font-family:'JetBrains Mono',monospace;
+    font-size: 13.5px;
+    background: var(--butter);
+    border: 2px solid var(--ink);
+    padding: 6px 12px;
+    border-radius: 8px;
+  }
+  .stack-list li:nth-child(3n+1){ transform: rotate(-2deg); }
+  .stack-list li:nth-child(3n+2){ transform: rotate(1.5deg); }
+  .stack-list li:nth-child(3n){ transform: rotate(-1deg); }
+
+  /* ---------- PROJECTS ---------- */
+  .project-grid{
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+  }
+  .project-card{
+    background: var(--paper);
+    border: 3px solid var(--ink);
+    border-radius: 18px;
+    padding: 24px;
+    box-shadow: 6px 6px 0 var(--ink);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display:flex;
+    flex-direction:column;
+    gap: 12px;
+  }
+  .project-card:nth-child(odd){ transform: rotate(-1.3deg); }
+  .project-card:nth-child(even){ transform: rotate(1.1deg); }
+  .project-card:hover{
+    transform: rotate(0deg) translateY(-4px);
+    box-shadow: 8px 10px 0 var(--ink);
+  }
+  .project-card .emoji-mark{
+    font-size: 30px;
+    width: 52px; height:52px;
+    display:flex; align-items:center; justify-content:center;
+    background: var(--mint);
+    border: 2.5px solid var(--ink);
+    border-radius: 12px;
+  }
+  .project-card h3{ font-size: 22px; }
+  .project-card p{ margin:0; font-size: 15px; color: rgba(36,28,63,0.85); }
+  .project-links{
+    margin-top: auto;
+    display:flex;
+    gap: 16px;
+    padding-top: 8px;
+  }
+  .project-links a{
+    font-family:'JetBrains Mono',monospace;
+    font-size: 13px;
+    text-decoration: underline;
+    text-decoration-color: var(--coral);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 3px;
+  }
+  .project-tags{
+    display:flex; gap:8px; flex-wrap:wrap;
+  }
+  .project-tags span{
+    font-family:'JetBrains Mono',monospace;
+    font-size: 11.5px;
+    background: var(--butter);
+    padding: 3px 8px;
+    border-radius: 6px;
+    border: 1.5px solid var(--ink);
+  }
+
+  /* ---------- CONTACT ---------- */
+  .contact{
+    background: var(--ink);
+    color: var(--butter);
+    border-top: 3px solid var(--ink);
+  }
+  .contact h2{ color: var(--butter); font-size: 34px; }
+  .contact p.lede{ color: rgba(255,244,214,0.8); max-width: 44ch; }
+  .contact-card{
+    margin-top: 28px;
+    background: rgba(255,244,214,0.06);
+    border: 2.5px solid rgba(255,244,214,0.35);
+    border-radius: 16px;
+    padding: 26px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .contact-card .mail-line{
+    font-family:'JetBrains Mono',monospace;
+    font-size: 17px;
+  }
+  .social-row{
+    display:flex;
+    gap: 16px;
+    margin-top: 22px;
+  }
+  .social-row a{
+    text-decoration:none;
+    font-weight:600;
+    font-size: 14.5px;
+    color: var(--mint);
+  }
+  .social-row a:hover{ color: var(--coral); }
+
+  footer{
+    background: var(--ink);
+    color: rgba(255,244,214,0.55);
+    text-align:center;
+    padding: 22px 0 30px;
+    font-size: 13px;
+    font-family:'JetBrains Mono',monospace;
+  }
+
+  /* ---------- RESPONSIVE ---------- */
+  @media (max-width: 760px){
+    .hero .wrap{ grid-template-columns: 1fr; }
+    .blob{ order:-1; width:190px; height:190px; }
+    .about-grid{ grid-template-columns: 1fr; }
+    .project-grid{ grid-template-columns: 1fr; }
+    .nav-links{ gap: 14px; }
+    .contact-card{ flex-direction:column; align-items:flex-start; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .btn, .project-card{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" class="nav-logo"><span class="dot"></span>alaka.dev</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#contact">Say hi</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow-tag tag">currently side-questing</span>
+      <h1>Scraping the web,<br>chasing game dev <em>curiosity</em>.</h1>
+      <p class="lede">Hi, I'm Alaka. I'm pursuing a Master's in Computer Science, and somewhere along the way I picked up a habit of teaching Python to do the parts of the internet nobody wants to do by hand. Lately I've also been sneaking Unity into my evenings as a very serious side quest.</p>
+      <div class="hero-ctas">
+        <a href="#work" class="btn btn-primary">See my projects</a>
+        <a href="#contact" class="btn btn-ghost">Get in touch</a>
+      </div>
+    </div>
+    <div class="blob">
+      <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+        <path fill="#FF5C7A" stroke="#241C3F" stroke-width="4" d="M50,-58C63,-49,70,-31,72,-13C74,5,71,25,60,40C49,55,30,65,9,68C-12,71,-33,67,-48,54C-63,41,-72,19,-71,-3C-70,-25,-59,-46,-42,-57C-25,-68,-2,-69,17,-65C36,-61,37,-67,50,-58Z" transform="translate(100 100)"/>
+        <text x="100" y="95" text-anchor="middle" fill="#FFFDF7" font-family="JetBrains Mono, monospace" font-size="15" font-weight="500">&lt;hello /&gt;</text>
+        <text x="100" y="118" text-anchor="middle" fill="#FFFDF7" font-family="JetBrains Mono, monospace" font-size="13">world.js</text>
+      </svg>
+    </div>
+  </div>
+</header>
+
+<section class="about" id="about">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>About</h2>
+      <span class="tag">// who's typing?</span>
+    </div>
+    <div class="about-grid">
+      <div>
+        <p>I'm based in Bengaluru, working through a Master's in Computer Science and building steadily with Python — web scraping, automation, and a growing set of LLM-and-agent projects. It started with comparing fashion products across five different sites, and turned into a real interest in how MCP and agentic tools work under the hood.</p>
+        <p>Outside of coursework, I've been picking up Unity, which has mostly taught me a new appreciation for game developers — and given my Pygame skills a level of seriousness I didn't expect to reach for a side project.</p>
+      </div>
+      <div>
+        <p style="margin-bottom:14px; font-weight:600;">Tools I reach for:</p>
+        <ul class="stack-list">
+          <li>Python</li>
+          <li>SQL</li>
+          <li>Selenium</li>
+          <li>BeautifulSoup</li>
+          <li>LangChain</li>
+          <li>OpenAI API</li>
+          <li>Pygame</li>
+          <li>Git &amp; GitHub</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="work">
+  <div class="wrap">
+    <div class="section-head">
+      <h2>Selected work</h2>
+      <span class="tag">// four things I'm proud of</span>
+    </div>
+    <div class="project-grid">
+
+      <article class="project-card">
+        <div class="emoji-mark">🐾</div>
+        <h3>Pawsitve</h3>
+        <p>A desktop app for pet owners to log their pets' details, moods, habits, and diets in one place, with an at-a-glance dashboard and secure login.</p>
+        <div class="project-tags"><span>VB.NET</span><span>SQL Server</span></div>
+        <div class="project-links">
+          <a href="https://github.com/alaka-cell/Pawsitve">View on GitHub</a>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="emoji-mark">🛍️</div>
+        <h3>MCP: Comparing Websites</h3>
+        <p>Compares fashion and beauty products across e-commerce sites in real time — extracting details, calculating match percentages, and summarizing it all with LLMs and parallel scraping.</p>
+        <div class="project-tags"><span>Python</span><span>LLMs</span><span>MCP</span></div>
+        <div class="project-links">
+          <a href="https://github.com/alaka-cell/MCP_Comparing-Websites">View on GitHub</a>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="emoji-mark">🏓</div>
+        <h3>Basic Retro Pong</h3>
+        <p>A retro-style Pong game with pixel art UI, custom animations, score saving, and difficulty settings — built purely for fun and game-dev practice.</p>
+        <div class="project-tags"><span>Python</span><span>Pygame</span></div>
+        <div class="project-links">
+          <a href="https://github.com/alaka-cell/Basic_Retro_pong">View on GitHub</a>
+        </div>
+      </article>
+
+      <article class="project-card">
+        <div class="emoji-mark">⛅</div>
+        <h3>Weather API (MCP)</h3>
+        <p>An MCP project that reports weather patterns and details for any specified region or city — a small, focused tool for exploring how MCP servers work.</p>
+        <div class="project-tags"><span>Python</span><span>MCP</span></div>
+        <div class="project-links">
+          <a href="https://github.com/alaka-cell/Weather_API">View on GitHub</a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <h2>Let's build something.</h2>
+    <p class="lede">Happy to talk about scraping projects, a promising new library, or why my Pong game has more difficulty settings than it probably needs.</p>
+    <div class="contact-card">
+      <span class="mail-line">your.email@example.com</span>
+      <a href="mailto:your.email@example.com" class="btn btn-primary">Send an email</a>
+    </div>
+    <div class="social-row">
+      <a href="https://github.com/alaka-cell">GitHub</a>
+      <a href="https://www.linkedin.com/in/alakas">LinkedIn</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  built with late-night coffee &amp; a bit of chaos
+</footer>
+
+</body>
+</html>
